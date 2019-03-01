@@ -1,0 +1,9 @@
+{
+    "hostname": "dev",
+    "port": 8080,
+    "api": {
+        "version" : 1,
+        "app_path": "/api/v1"
+    },
+    "ip": "localhost"
+}
