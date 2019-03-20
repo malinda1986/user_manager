@@ -1,4 +1,4 @@
-# Spark
+# Users
 
 ## How to run
 
@@ -13,10 +13,3 @@
  - ```run npm run dev```
  - server will started on ```http://localhost:8080```
 
-## Running  e2e tests
- - cd into web folder and ```run yarn cypress:open```
-
-## API doc   
- - Once server is started you can access the api doc via ```http://localhost:8080/api/v1/apidoc```
- - Create new user using the swagger doc and then copy and page the user id in app url once you open the frontend app
-# editable_profile
