@@ -6,9 +6,10 @@ import store from 'store'
 import { ROLE_TYPE } from 'utils/constant'
 import { queryLayout, pathMatchRegexp } from 'utils'
 import { CANCEL_REQUEST_MESSAGE } from 'utils/constant'
-import { queryRouteList, logoutUser, queryUserInfo } from 'api'
-
+import api from 'api'
 import config from 'config'
+
+const { queryRouteList, logoutUser, queryUserInfo } = api
 
 export default {
   namespace: 'app',
@@ -19,15 +20,16 @@ export default {
     },
     routeList: [
       {
-        id: '2',
-        icon: 'user',
-        name: 'Profile',
-        router: '/profile',
+        id: '1',
+        icon: 'laptop',
+        name: 'Dashboard',
+        zhName: '仪表盘',
+        router: '/dashboard',
       },
     ],
     locationPathname: '',
     locationQuery: {},
-    theme: store.get('theme') || 'dark',
+    theme: store.get('theme') || 'light',
     collapsed: store.get('collapsed') || false,
     notifications: [
       {
@@ -104,9 +106,9 @@ export default {
             routeList,
           },
         })
-        if (pathMatchRegexp('/login', window.location.pathname)) {
+        if (pathMatchRegexp(['/','/login'], window.location.pathname)) {
           router.push({
-            pathname: '/profile/5c1cd890933f27d92e401556',
+            pathname: '/dashboard',
           })
         }
       } else if (queryLayout(config.layouts, locationPathname) !== 'public') {
@@ -129,10 +131,11 @@ export default {
             permissions: { visit: [] },
             menu: [
               {
-                id: '2',
-                icon: 'user',
-                name: 'Profile',
-                router: '/profile/5c1cd890933f27d92e401556',
+                id: '1',
+                icon: 'laptop',
+                name: 'Dashboard',
+                zhName: '仪表盘',
+                router: '/dashboard',
               },
             ],
           },

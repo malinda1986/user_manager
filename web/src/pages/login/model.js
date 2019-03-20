@@ -1,5 +1,9 @@
 import { router, pathMatchRegexp } from 'utils'
-import { loginUser } from 'api'
+import { message } from 'antd'
+
+import api from 'api'
+
+const { loginUser } = api
 
 export default {
   namespace: 'login',
@@ -8,20 +12,25 @@ export default {
 
   effects: {
     *login({ payload }, { put, call, select }) {
-      const data = yield call(loginUser, payload)
-      const { locationQuery } = yield select(_ => _.app)
-      if (data.success) {
-        const { from } = locationQuery
-        yield put({ type: 'app/query' })
-        if (!pathMatchRegexp('/login', from)) {
-          if (from === '/') router.push('/profile/5c1cd890933f27d92e401556')
-          else router.push(from)
+      try{
+        const data = yield call(loginUser, payload)
+        const { locationQuery } = yield select(_ => _.app)
+        if (data.success) {
+          const { from } = locationQuery
+          yield put({ type: 'app/query' })
+          if (!pathMatchRegexp('/login', from)) {
+            if (from === '/') router.push('/user')
+            else router.push(from)
+          } else {
+            router.push('/user')
+          }
         } else {
-          router.push('/profile/5c1cd890933f27d92e401556')
+          message.error("Invalid username or password")
         }
-      } else {
-        throw data
+      } catch(e){
+        message.error("Invalid username or password")
       }
+     
     },
   },
 }

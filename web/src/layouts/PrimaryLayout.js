@@ -58,13 +58,15 @@ class PrimaryLayout extends PureComponent {
     const { onCollapseChange } = this
 
     // Localized route name.
+
+    const lang = langFromPath(location.pathname)
     const newRouteList =
-      langFromPath(location.pathname) === 'zh'
+      lang !== 'en'
         ? routeList.map(item => {
-            const { zhName, ...other } = item
+            const { name, ...other } = item
             return {
               ...other,
-              name: zhName,
+              name: (item[lang] || {}).name || name,
             }
           })
         : routeList
@@ -145,7 +147,7 @@ class PrimaryLayout extends PureComponent {
             </Content>
             <BackTop
               className={styles.backTop}
-              target={() => document.querySelector('#primaryLayout>div')}
+              target={() => document.querySelector('#primaryLayout')}
             />
             <GlobalFooter
               className={styles.footer}

@@ -29,6 +29,26 @@ class Login extends PureComponent {
     const { loading, form, i18n } = this.props
     const { getFieldDecorator } = form
 
+    let footerLinks = [
+      {
+        key: 'github',
+        title: <Icon type="github" />,
+        href: 'https://github.com/zuiidea/antd-admin',
+        blankTarget: true,
+      },
+    ]
+
+    if (config.i18n) {
+      footerLinks = footerLinks.concat(
+        config.i18n.languages.map(item => ({
+          key: item.key,
+          title: (
+            <span onClick={setLocale.bind(null, item.key)}>{item.title}</span>
+          ),
+        }))
+      )
+    }
+
     return (
       <Fragment>
         <div className={styles.form}>
@@ -74,19 +94,11 @@ class Login extends PureComponent {
               >
                 <Trans>Sign in</Trans>
               </Button>
-              <p>
-                <span>
-                  <Trans>Username</Trans>
-                  ：admin
-                </span>
-                <span>
-                  <Trans>Password</Trans>
-                  ：admin
-                </span>
-              </p>
+             
             </Row>
           </form>
         </div>
+       
       </Fragment>
     )
   }

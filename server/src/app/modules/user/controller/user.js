@@ -19,11 +19,24 @@ const get = ({options}) => {
     });
 };
 
-const save = ({body}) => {
-    const query = {};
-    const options = {upsert: true, 'new': true, setDefaultsOnInsert: true};
+const save = ({body, options}) => {
+    const query = {_id: options.params.id};
+    const option = {upsert: true};
     return new Promise((resolve, reject) => {
-        User.findOneAndUpdate(query, body && body.data ? body.data : body, options, function(error, result) {
+        User.findOneAndUpdate(query, body && body.data ? body.data : body, option, function(error, result) {
+            if (error) {
+                reject(error);
+            } else {
+                resolve(result);
+            }
+        });
+    });
+};
+
+const create = ({body}) => {
+    return new Promise((resolve, reject) => {
+        const user = new User(body);
+        user.save(function(error, result) {
             if (error) {
                 reject(error);
             } else {
@@ -41,10 +54,10 @@ const getParams = () => {
 
 const upload = ({body}) => {
     return new Promise((resolve, reject) => {
-        const imgData = body.data.file;
+        const imgData = body.file;
         const base64Str = imgData;
         const path = 'uploads/';
-        const optionalObj = {fileName: body.data.id, type: 'jpg'};
+        const optionalObj = {fileName: body.id, type: 'jpg'};
         try {
             const imageInfo = base64ToImage(base64Str, path, optionalObj);
             resolve({imageInfo});
@@ -54,9 +67,37 @@ const upload = ({body}) => {
     });
 };
 
+const list = () => {
+    return new Promise((resolve, reject) => {
+        User.find({})
+        .lean()
+        .then(user => {
+            return resolve(user);
+        })
+        .catch(e => {
+            return reject(e);
+        });
+    });
+};
+
+const deleteUser = ({options}) => {
+    return new Promise((resolve, reject) => {
+        User.remove({_id: options.params.id})
+        .then(user => {
+            return resolve(user);
+        })
+        .catch(e => {
+            return reject(e);
+        });
+    });
+};
+
 module.exports = {
     get,
     save,
+    deleteUser,
+    create,
     getParams,
     upload,
+    list,
 };

@@ -14,10 +14,9 @@ export const model = {
 export const pageModel = modelExtend(model, {
   state: {
     list: [],
-    showLoading: false,
     pagination: {
-      showSizeChanger: false,
-      showQuickJumper: false,
+      showSizeChanger: true,
+      showQuickJumper: true,
       current: 1,
       total: 0,
       pageSize: 10,

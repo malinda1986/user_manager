@@ -6,7 +6,7 @@ import { withI18n } from '@lingui/react'
 class Index extends PureComponent {
   render() {
     const { i18n } = this.props
-    return <Redirect to={i18n.t`/profile/5c1cd890933f27d92e401556`} />
+    return <Redirect to={i18n.t`/user`} />
   }
 }
 

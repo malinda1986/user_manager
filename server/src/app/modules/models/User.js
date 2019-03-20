@@ -2,23 +2,26 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-    id: {type: String, required: true, index: true},
+    id: {type: String, required: true, index: true, 'default': Date.now()},
     DisplayName: {
         type: String, required: true
     },
-    RealName: {
+    Address: {
+        type: String, required: false,
+    },
+    Telephone: {
         type: String, required: false,
     },
     ProfilePicture: {
         type: String, required: false,
     },
     Birthday: {
-        type: String, required: true
+        type: String, required: false
     },
     Gender: {
-        type: String, required: true
+        type: Boolean, required: false
     },
-    Ethnicity: {
+    Mobile: {
         type: String, required: false
     },
     Religion: {
@@ -27,11 +30,11 @@ const userSchema = new Schema({
     Height: {
         type: String, required: false,
     },
-    Figure: {
+    Email: {
         type: String, required: false,
     },
-    MaritalStatus: {
-        type: String, required: true,
+    Password: {
+        type: String, required: false,
     },
     AboutMe: {
         type: String, required: false,
@@ -40,7 +43,7 @@ const userSchema = new Schema({
         type: String, required: false,
     },
     Location: {
-        type: String, required: true,
+        type: String, required: false,
     },
     Created: {type: Date, 'default': Date.now()},
     Modified: {type: Date, 'default': Date.now()},

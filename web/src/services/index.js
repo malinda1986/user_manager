@@ -27,33 +27,64 @@ for (const key in api) {
   APIFunction[key] = gen(api[key])
 }
 
+APIFunction.queryWeather = params => {
+  params.key = 'i7sau1babuzwhycn'
+  return request({
+    url: `${apiPrefix}/weather/now.json`,
+    data: params,
+  })
+}
 
-APIFunction.userParams = params => {
+APIFunction.userList = params => {
+  params.key = 'i7sau1babuzwhycn'
   return request({
-    url: `${apiPrefix}/profile/params`,
+    url: `${apiPrefix}/profile/list`,
     data: params,
   })
 }
-APIFunction.updateUser = params => {
+
+APIFunction.userCreates = params => {
+  params.key = 'i7sau1babuzwhycn'
   return request({
-    url: `${apiPrefix}/profile/${params.data.id}`,
+    url: `${apiPrefix}/profile`,
+    method:'post',
     data: params,
-    method:'put'
   })
 }
-APIFunction.queryUser = params => {
+
+APIFunction.getUsers = params => {
+  params.key = 'i7sau1babuzwhycn'
   return request({
     url: `${apiPrefix}/profile/${params.id}`,
+    method:'get',
     data: params,
   })
 }
 
-APIFunction.imageUpload = params => {
+APIFunction.updateUsers = params => {
+  params.key = 'i7sau1babuzwhycn'
+  return request({
+    url: `${apiPrefix}/profile/${params.id}`,
+    method:'put',
+    data: params,
+  })
+}
+
+APIFunction.deleteUsers = params => {
+  params.key = 'i7sau1babuzwhycn'
+  return request({
+    url: `${apiPrefix}/profile/${params.id}`,
+    method:'delete',
+    data: params,
+  })
+}
+
+APIFunction.uploadImage = params => {
+  params.key = 'i7sau1babuzwhycn'
   return request({
     url: `${apiPrefix}/profile/upload`,
+    method:'post',
     data: params,
-    method:'post'
   })
 }
-
-module.exports = APIFunction
+export default APIFunction

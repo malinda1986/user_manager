@@ -21,3 +21,8 @@ package-lock.json
 # jslingui
 src/locales/_build
 src/locales/**/*.js
+
+upload
+server/uploads
+
+/server/uploads

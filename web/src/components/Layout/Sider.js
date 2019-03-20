@@ -54,7 +54,23 @@ class Sider extends PureComponent {
             />
           </ScrollBar>
         </div>
-       
+        {collapsed ? null : (
+          <div className={styles.switchTheme}>
+            <span>
+              <Icon type="bulb" />
+              <Trans>Switch Theme</Trans>
+            </span>
+            <Switch
+              onChange={onThemeChange.bind(
+                this,
+                theme === 'dark' ? 'light' : 'dark'
+              )}
+              defaultChecked={theme === 'dark'}
+              checkedChildren={i18n.t`Dark`}
+              unCheckedChildren={i18n.t`Light`}
+            />
+          </div>
+        )}
       </Layout.Sider>
     )
   }

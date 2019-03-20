@@ -4,11 +4,32 @@ const { ApiPrefix } = Constant
 const database = [
   {
     id: '2',
-    name: 'Profile',
+    name: 'Users',
+    zh: {
+      name: '用户管理'
+    },
+    'pt-br': {
+      name: 'Usuário'
+    },
     icon: 'user',
-    route: '/profile/5c1cd890933f27d92e401556',
+    route: '/user',
   },
+  {
+    id: '21',
+    menuParentId: '-1',
+    breadcrumbParentId: '2',
+    name: 'User Detail',
+    zh: {
+      name: '用户详情'
+    },
+    'pt-br': {
+      name: 'Detalhes do usuário'
+    },
+    route: '/user/:id',
+  },
+
 ]
+
 module.exports = {
   [`GET ${ApiPrefix}/routes`](req, res) {
     res.status(200).json(database)
