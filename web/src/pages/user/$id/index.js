@@ -78,6 +78,12 @@ class UserDetail extends PureComponent {
         </div>
         <div className={styles.content}>
           <div className={styles.item}>
+            <div>Occupation</div>
+            <div>{data['Password']}</div>
+          </div>
+        </div>
+        <div className={styles.content}>
+          <div className={styles.item}>
             <div>ProfilePicture</div>
             <div>
               <Card

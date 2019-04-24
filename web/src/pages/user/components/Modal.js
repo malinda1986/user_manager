@@ -203,6 +203,18 @@ class UserModal extends PureComponent {
               <Input />
             )}
           </FormItem>
+          <FormItem label={i18n.t`Password`} hasFeedback {...formItemLayout}>
+            {getFieldDecorator('Password', {
+              initialValue: item.Password,
+              rules: [
+                {
+                  required: true,
+                },
+              ],
+            })(
+              <Input type="password" />
+            )}
+          </FormItem>
         </Form>
       </Modal>
     )

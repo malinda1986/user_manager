@@ -9,6 +9,7 @@ import { stringify } from 'qs'
 import List from './components/List'
 import Filter from './components/Filter'
 import Modal from './components/Modal'
+import ShowConfirm from './components/ShowConfirm'
 
 @withI18n()
 @connect(({ user, loading }) => ({ user, loading }))
@@ -24,6 +25,8 @@ class User extends PureComponent {
       modalType,
       selectedRowKeys,
       file,
+      showCofirm,
+      callback,
     } = user
  
     const handleRefresh = newQuery => {
@@ -72,6 +75,9 @@ class User extends PureComponent {
 
     const listProps = {
       dataSource: list,
+      currentItem,
+      showCofirm,
+      callback,
       loading: loading.effects['user/query'],
       pagination,
       dispatch,
@@ -79,6 +85,16 @@ class User extends PureComponent {
         handleRefresh({
           page: page.current,
           pageSize: page.pageSize,
+        })
+      },
+      onShowConfirm(record, callback){
+        dispatch({
+          type: 'user/showCofirm',
+          payload: {
+            showCofirm: true,
+            currentItem: record,
+            callback
+          },
         })
       },
       onDeleteItem(id) {
@@ -162,6 +178,7 @@ class User extends PureComponent {
         )}
         <List {...listProps} />
         {modalVisible && <Modal {...modalProps} />}
+        <ShowConfirm  {...listProps} />
       </Page>
     )
   }

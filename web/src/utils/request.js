@@ -30,7 +30,8 @@ export default function request(options) {
         delete cloneData[item.name]
       }
     }
-    if(url === '/api/v1/profile/list' || url === '/api/v1/profile' || url === '/api/v1/profile/upload'){
+    if(url === '/api/v1/profile/list' || url === '/api/v1/profile' || url === '/api/v1/profile/upload'
+    || url === '/api/v1/user/admin/login' || url === '/api/v1/user' ){
       domain = 'http://localhost:8080'
     }
     const mt = pathMatchRegexp('/api/v1/profile/:id', url)

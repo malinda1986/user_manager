@@ -1,0 +1,170 @@
+{
+    "openapi" : "3.0.1",
+    "info" : {
+      "title" : "Spark API doc",
+      "description" : "API",
+      "version" : "0.1"
+    },
+    "servers" : [ {
+      "url" : "http://localhost:8080"
+    } ],
+    "tags" : [  {
+      "name" : "Users"
+    }],
+    "paths" : {
+      "/api/v1/profile/{id}" : {
+        "get" : {
+          "tags" : [ "Users" ],
+          "description" : "Get user",
+          "parameters" : [ {
+            "name" : "id",
+            "in" : "path",
+            "required" : true,
+            "style" : "simple",
+            "explode" : false,
+            "schema" : {
+              "type" : "string"
+            },
+            "example" : "5c1cd890933f27d92e401556"
+          }  ],
+          "responses" : {
+            "200" : {
+              "description" : "User details",
+              "content" : {
+                "application/json" : {
+                  "schema" : {
+                    "type" : "array",
+                    "items" : {
+                      "$ref" : "#/components/schemas/UserRequest"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put" : {
+          "tags" : [ "Users" ],
+          "description" : "Add user",
+          "requestBody" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/UserRequest"
+                }
+              }
+            }
+          },
+          "responses" : {
+            "200" : {
+              "description" : "User details",
+              "content" : {
+                "application/json" : {
+                  "schema" : {
+                    "$ref" : "#/components/schemas/UserRequest"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/v1/profile" : {
+        "post" : {
+          "tags" : [ "Users" ],
+          "description" : "Add user",
+          "requestBody" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/UserRequest"
+                }
+              }
+            }
+          },
+          "responses" : {
+            "200" : {
+              "description" : "User details",
+              "content" : {
+                "application/json" : {
+                  "schema" : {
+                    "$ref" : "#/components/schemas/UserRequest"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "components" : {
+      "schemas" : {
+        "User" : {
+          "type" : "object",
+          "properties" : {
+              "type": "object"
+          }
+        },
+        "UserRequest" : {
+          "type" : "object",
+          "properties" : {
+            "AboutMe" : {
+              "type" : "string",
+              "required" : true,
+              "example" : "I'm malinda"
+            },
+            "Birthday" : {
+              "type" : "string",
+              "example" : "02/02/3949"
+            },
+            "Ethnicity" : {
+              "type" : "string",
+              "required" : true,
+              "example" : "5b3d1252-860f-459b-ab90-7a2914360dbf"
+            },
+            "Figure" : {
+              "type" : "string",
+              "required" : true,
+              "example" : "9c6ddf44-01ae-4fdb-acc9-b97f2882e4ef"
+            },
+            "Gender" : {
+              "type" : "string",
+              "required" : true,
+              "example" : "8f9d76ad-2c6b-4a98-8496-6165a2770a5e"
+            },
+            "Height" : {
+              "type" : "string",
+              "required" : true,
+              "example" : "90"
+            },
+            "Location" : {
+              "type" : "string",
+              "required" : true,
+              "example" : "Aberdeen"
+            },
+            "MaritalStatus" : {
+              "type" : "string",
+              "required" : true,
+              "example" : "3cd548f0-3471-44b8-b2ed-bf6c83790a7a"
+            },
+            "Occupation" : {
+              "type" : "string",
+              "required" : true,
+              "example" : "Painter"
+            },
+            "RealName" : {
+              "type" : "string",
+              "required" : true,
+              "example" : "Mal"
+            },
+            "Religion" : {
+              "type" : "string",
+              "required" : true,
+              "example" : "a2bc1142-9b6a-41f3-a620-a39afb1304ab"
+            }
+          }
+        }
+      }
+    }
+  }

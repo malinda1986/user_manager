@@ -26,6 +26,7 @@ export default modelExtend(pageModel, {
     modalType: 'create',
     selectedRowKeys: [],
     file: '',
+    showCofirm: false,
   },
 
   subscriptions: {
@@ -126,5 +127,9 @@ export default modelExtend(pageModel, {
     setImage(state, {payload}) {
       return { ...state, ...payload }
     },
+
+    showCofirm(state, {payload}){
+      return { ...state, ...payload }
+    }
   },
 })

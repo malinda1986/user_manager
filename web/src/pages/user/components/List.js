@@ -12,23 +12,36 @@ const { confirm } = Modal
 @withI18n()
 class List extends PureComponent {
   handleMenuClick = (record, e) => {
-    const { onDeleteItem, onEditItem, i18n, dispatch } = this.props
+    const { onDeleteItem, onEditItem, i18n, dispatch, onShowConfirm } = this.props
 
     if (e.key === '1') {
-      onEditItem(record)
+      onShowConfirm(record, ()=>{onEditItem(record)})
+
+      //onEditItem(record)
     } else if (e.key === '2') {
-      confirm({
-        title: i18n.t`Are you sure delete this record?`,
-        onOk() {
-          onDeleteItem(record._id)
-        },
+      onShowConfirm(record, ()=>{
+        confirm({
+          title: i18n.t`Are you sure delete this record?`,
+          onOk() {
+            onDeleteItem(record._id)
+          },
+        })
       })
+
+
     } else if(e.key === '3'){
-      dispatch(
-        routerRedux.push({
-        pathname: `/user/${record._id}`,
-      }))
+      onShowConfirm(record, ()=>{
+        dispatch(
+          routerRedux.push({
+          pathname: `/user/${record._id}`,
+        }))
+      })
     }
+  }
+
+
+  showConfirm = (record, e) => {
+
   }
 
   render() {
