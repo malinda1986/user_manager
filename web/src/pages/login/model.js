@@ -12,7 +12,7 @@ export default {
 
   effects: {
     *login({ payload }, { put, call, select }) {
-      try{
+      try {
         const data = yield call(loginUser, payload)
         const { locationQuery } = yield select(_ => _.app)
         if (data.success) {
@@ -25,12 +25,11 @@ export default {
             router.push('/user')
           }
         } else {
-          message.error("Invalid username or password")
+          message.error('Invalid username or password')
         }
-      } catch(e){
-        message.error("Invalid username or password")
+      } catch (e) {
+        message.error('Invalid username or password')
       }
-     
     },
   },
 }

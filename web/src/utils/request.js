@@ -30,12 +30,17 @@ export default function request(options) {
         delete cloneData[item.name]
       }
     }
-    if(url === '/api/v1/profile/list' || url === '/api/v1/profile' || url === '/api/v1/profile/upload'
-    || url === '/api/v1/user/admin/login' || url === '/api/v1/user' ){
+    if (
+      url === '/api/v1/profile/list' ||
+      url === '/api/v1/profile' ||
+      url === '/api/v1/profile/upload' ||
+      url === '/api/v1/user/admin/login' ||
+      url === '/api/v1/user'
+    ) {
       domain = 'http://localhost:8080'
     }
     const mt = pathMatchRegexp('/api/v1/profile/:id', url)
-    if(mt && mt[1]){
+    if (mt && mt[1]) {
       domain = 'http://localhost:8080'
     }
     console.log('match===', mt)

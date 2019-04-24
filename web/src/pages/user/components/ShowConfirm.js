@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { Form, Input,  Modal, message } from 'antd'
+import { Form, Input, Modal, message } from 'antd'
 import { Trans, withI18n } from '@lingui/react'
 
 const FormItem = Form.Item
@@ -16,9 +16,8 @@ const formItemLayout = {
 @withI18n()
 @Form.create()
 class UserModal extends PureComponent {
-  
   handleOk = () => {
-    const { currentItem = {}, form, callback,dispatch } = this.props
+    const { currentItem = {}, form, callback, dispatch } = this.props
     const { validateFields, getFieldsValue } = form
     validateFields(errors => {
       if (errors) {
@@ -27,13 +26,13 @@ class UserModal extends PureComponent {
       const data = {
         ...getFieldsValue(),
       }
-      if(data.Password === currentItem.Password){
+      if (data.Password === currentItem.Password) {
         dispatch({
-            type: 'user/showCofirm',
-            payload: {
-              showCofirm: false,
-            },
-          })
+          type: 'user/showCofirm',
+          payload: {
+            showCofirm: false,
+          },
+        })
         callback()
       } else {
         message.error('Your passwor is not correct!')
@@ -42,24 +41,35 @@ class UserModal extends PureComponent {
   }
 
   handleCancel = () => {
-    const { dispatch} = this.props
+    const { dispatch } = this.props
     dispatch({
-        type: 'user/showCofirm',
-        payload: {
-          showCofirm: false,
-        },
-      })
+      type: 'user/showCofirm',
+      payload: {
+        showCofirm: false,
+      },
+    })
   }
 
   render() {
-    const { item = {}, onOk, form, file, i18n, showCofirm, ...modalProps } = this.props
+    const {
+      item = {},
+      onOk,
+      form,
+      file,
+      i18n,
+      showCofirm,
+      ...modalProps
+    } = this.props
     const { getFieldDecorator } = form
 
     return (
-      <Modal {...modalProps} onOk={this.handleOk} 
-      onCancel={this.handleCancel}
-
-      title="Two Level Autentication System"  visible = {showCofirm}>
+      <Modal
+        {...modalProps}
+        onOk={this.handleOk}
+        onCancel={this.handleCancel}
+        title="Two Level Autentication System"
+        visible={showCofirm}
+      >
         <Form layout="horizontal">
           <FormItem label={i18n.t`Password`} hasFeedback {...formItemLayout}>
             {getFieldDecorator('Password', {
@@ -69,9 +79,7 @@ class UserModal extends PureComponent {
                   required: true,
                 },
               ],
-            })(
-              <Input type="password" />
-            )}
+            })(<Input type="password" />)}
           </FormItem>
         </Form>
       </Modal>

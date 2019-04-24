@@ -94,11 +94,9 @@ class Login extends PureComponent {
               >
                 <Trans>Sign in</Trans>
               </Button>
-             
             </Row>
           </form>
         </div>
-       
       </Fragment>
     )
   }

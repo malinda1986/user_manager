@@ -12,14 +12,22 @@ const { confirm } = Modal
 @withI18n()
 class List extends PureComponent {
   handleMenuClick = (record, e) => {
-    const { onDeleteItem, onEditItem, i18n, dispatch, onShowConfirm } = this.props
+    const {
+      onDeleteItem,
+      onEditItem,
+      i18n,
+      dispatch,
+      onShowConfirm,
+    } = this.props
 
     if (e.key === '1') {
-      onShowConfirm(record, ()=>{onEditItem(record)})
+      onShowConfirm(record, () => {
+        onEditItem(record)
+      })
 
       //onEditItem(record)
     } else if (e.key === '2') {
-      onShowConfirm(record, ()=>{
+      onShowConfirm(record, () => {
         confirm({
           title: i18n.t`Are you sure delete this record?`,
           onOk() {
@@ -27,22 +35,18 @@ class List extends PureComponent {
           },
         })
       })
-
-
-    } else if(e.key === '3'){
-      onShowConfirm(record, ()=>{
+    } else if (e.key === '3') {
+      onShowConfirm(record, () => {
         dispatch(
           routerRedux.push({
-          pathname: `/user/${record._id}`,
-        }))
+            pathname: `/user/${record._id}`,
+          })
+        )
       })
     }
   }
 
-
-  showConfirm = (record, e) => {
-
-  }
+  showConfirm = (record, e) => {}
 
   render() {
     const { onDeleteItem, onEditItem, i18n, ...tableProps } = this.props
@@ -54,7 +58,12 @@ class List extends PureComponent {
         key: 'ProfilePicture',
         width: 72,
         fixed: 'left',
-        render: text => <Avatar style={{ marginLeft: 8 }} src={`http://localhost:8080//${text}`} />,
+        render: text => (
+          <Avatar
+            style={{ marginLeft: 8 }}
+            src={`http://localhost:8080//${text}`}
+          />
+        ),
       },
       {
         title: <Trans>Full Name</Trans>,
@@ -71,7 +80,7 @@ class List extends PureComponent {
         title: <Trans>Gender</Trans>,
         dataIndex: 'Gender',
         key: 'Gender',
-        render: text => <span>{text ? 'Male': 'Female'}</span>,
+        render: text => <span>{text ? 'Male' : 'Female'}</span>,
       },
       {
         title: <Trans>Phone</Trans>,

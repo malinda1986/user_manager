@@ -54,9 +54,7 @@ class Header extends PureComponent {
         item => item.key === i18n._language
       )
 
-      rightContent.unshift(
-
-      )
+      rightContent.unshift()
     }
 
     rightContent.unshift(
@@ -102,9 +100,7 @@ class Header extends PureComponent {
             ) : null}
           </div>
         }
-      >
-
-      </Popover>
+      />
     )
 
     return (

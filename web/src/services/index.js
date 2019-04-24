@@ -47,7 +47,7 @@ APIFunction.userCreates = params => {
   params.key = 'i7sau1babuzwhycn'
   return request({
     url: `${apiPrefix}/profile`,
-    method:'post',
+    method: 'post',
     data: params,
   })
 }
@@ -56,7 +56,7 @@ APIFunction.getUsers = params => {
   params.key = 'i7sau1babuzwhycn'
   return request({
     url: `${apiPrefix}/profile/${params.id}`,
-    method:'get',
+    method: 'get',
     data: params,
   })
 }
@@ -65,7 +65,7 @@ APIFunction.updateUsers = params => {
   params.key = 'i7sau1babuzwhycn'
   return request({
     url: `${apiPrefix}/profile/${params.id}`,
-    method:'put',
+    method: 'put',
     data: params,
   })
 }
@@ -74,7 +74,7 @@ APIFunction.deleteUsers = params => {
   params.key = 'i7sau1babuzwhycn'
   return request({
     url: `${apiPrefix}/profile/${params.id}`,
-    method:'delete',
+    method: 'delete',
     data: params,
   })
 }
@@ -83,7 +83,7 @@ APIFunction.uploadImage = params => {
   params.key = 'i7sau1babuzwhycn'
   return request({
     url: `${apiPrefix}/profile/upload`,
-    method:'post',
+    method: 'post',
     data: params,
   })
 }

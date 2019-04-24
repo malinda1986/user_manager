@@ -1,5 +1,4 @@
 coverage
-web/dist
 web/node_modules
 web/npm-debug.log
 web/yarn-error.log

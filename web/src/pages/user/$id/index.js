@@ -5,7 +5,7 @@ import { connect } from 'dva'
 import { Page } from 'components'
 import styles from './index.less'
 
-const { Meta } = Card;
+const { Meta } = Card
 
 @connect(({ userDetail }) => ({ userDetail }))
 class UserDetail extends PureComponent {
@@ -15,8 +15,7 @@ class UserDetail extends PureComponent {
     const content = []
     for (let key in data) {
       if ({}.hasOwnProperty.call(data, key)) {
-        if(key == 'DisplayName'){
-
+        if (key == 'DisplayName') {
         }
         content.push(
           <div key={key} className={styles.item}>
@@ -37,7 +36,7 @@ class UserDetail extends PureComponent {
         <div className={styles.content}>
           <div className={styles.item}>
             <div>Gender</div>
-            <div>{data['Gender'] ? 'Male': 'Female'}</div>
+            <div>{data['Gender'] ? 'Male' : 'Female'}</div>
           </div>
         </div>
         <div className={styles.content}>
@@ -89,9 +88,13 @@ class UserDetail extends PureComponent {
               <Card
                 hoverable
                 style={{ width: 240 }}
-                cover={<img alt="example" src={`http://localhost:8080/${data['ProfilePicture']}`} />}
-              >
-              </Card>
+                cover={
+                  <img
+                    alt="example"
+                    src={`http://localhost:8080/${data['ProfilePicture']}`}
+                  />
+                }
+              />
             </div>
           </div>
         </div>

@@ -76,37 +76,39 @@ export default {
     *query({ payload }, { call, put, select }) {
       const { success, user } = yield call(queryUserInfo, payload)
       const { locationPathname } = yield select(_ => _.app)
-      
+
       if (success && user) {
         //const { list } = yield call(queryRouteList)
         const { permissions } = user
         console.log('tttttt', success, user, permissions)
-        let list = [  {
-          id: '2',
-          name: 'Users',
-          zh: {
-            name: '用户管理'
+        let list = [
+          {
+            id: '2',
+            name: 'Users',
+            zh: {
+              name: '用户管理',
+            },
+            'pt-br': {
+              name: 'Usuário',
+            },
+            icon: 'user',
+            route: '/user',
           },
-          'pt-br': {
-            name: 'Usuário'
+          {
+            id: '21',
+            menuParentId: '-1',
+            breadcrumbParentId: '2',
+            name: 'User Detail',
+            zh: {
+              name: '用户详情',
+            },
+            'pt-br': {
+              name: 'Detalhes do usuário',
+            },
+            route: '/user/:id',
           },
-          icon: 'user',
-          route: '/user',
-        },
-        {
-          id: '21',
-          menuParentId: '-1',
-          breadcrumbParentId: '2',
-          name: 'User Detail',
-          zh: {
-            name: '用户详情'
-          },
-          'pt-br': {
-            name: 'Detalhes do usuário'
-          },
-          route: '/user/:id',
-        }]
-        let routeList = list;
+        ]
+        let routeList = list
         if (
           permissions.role === ROLE_TYPE.ADMIN ||
           permissions.role === ROLE_TYPE.DEVELOPER
@@ -132,7 +134,7 @@ export default {
             routeList,
           },
         })
-        if (pathMatchRegexp(['/','/login'], window.location.pathname)) {
+        if (pathMatchRegexp(['/', '/login'], window.location.pathname)) {
           router.push({
             pathname: '/user',
           })
@@ -155,7 +157,7 @@ export default {
           from: '/',
         }),
       })
-      return;
+      return
       if (data.success) {
         yield put({
           type: 'updateState',
@@ -174,7 +176,6 @@ export default {
           },
         })
         yield put({ type: 'query' })
-       
       } else {
         throw data
       }

@@ -28,7 +28,7 @@ class User extends PureComponent {
       showCofirm,
       callback,
     } = user
- 
+
     const handleRefresh = newQuery => {
       router.push({
         pathname,
@@ -65,12 +65,12 @@ class User extends PureComponent {
           type: 'user/hideModal',
         })
       },
-      uploadImg(data){
+      uploadImg(data) {
         dispatch({
           type: 'user/upload',
-          payload: data
+          payload: data,
         })
-      }
+      },
     }
 
     const listProps = {
@@ -87,13 +87,13 @@ class User extends PureComponent {
           pageSize: page.pageSize,
         })
       },
-      onShowConfirm(record, callback){
+      onShowConfirm(record, callback) {
         dispatch({
           type: 'user/showCofirm',
           payload: {
             showCofirm: true,
             currentItem: record,
-            callback
+            callback,
           },
         })
       },
@@ -178,7 +178,7 @@ class User extends PureComponent {
         )}
         <List {...listProps} />
         {modalVisible && <Modal {...modalProps} />}
-        <ShowConfirm  {...listProps} />
+        <ShowConfirm {...listProps} />
       </Page>
     )
   }

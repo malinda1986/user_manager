@@ -66,8 +66,7 @@ export default modelExtend(pageModel, {
       if (data.success) {
         yield put({
           type: 'updateState',
-          payload: {
-          },
+          payload: {},
         })
       } else {
         throw data
@@ -96,16 +95,18 @@ export default modelExtend(pageModel, {
       const data = yield call(uploadImage, payload)
       console.log(data)
       if (data.success) {
-        yield put({ type: 'setImage' ,payload:{
-          file: data.response.imageInfo.fileName
-        } })
+        yield put({
+          type: 'setImage',
+          payload: {
+            file: data.response.imageInfo.fileName,
+          },
+        })
       } else {
         throw data
       }
     },
 
     *update({ payload }, { select, call, put }) {
-    
       const data = yield call(updateUsers, payload)
       if (data.success) {
         yield put({ type: 'hideModal' })
@@ -124,12 +125,12 @@ export default modelExtend(pageModel, {
       return { ...state, modalVisible: false }
     },
 
-    setImage(state, {payload}) {
+    setImage(state, { payload }) {
       return { ...state, ...payload }
     },
 
-    showCofirm(state, {payload}){
+    showCofirm(state, { payload }) {
       return { ...state, ...payload }
-    }
+    },
   },
 })
